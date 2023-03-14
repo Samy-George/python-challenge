@@ -34,8 +34,8 @@ with open(csvpath) as csvfile:
     print("Total Months:" + str(len(month)))
     print("Total: $" + str(profit))   
     print("Average Change: $"+ str(round(total_change/ (len(month)-1),2)))       
-    print("Greatest Increase in Profits: $" + str(max(change_list)))
-    print("Greatest Decrease in Profits: $" + str(min(change_list)))
+    print("Greatest Increase in Profits: Aug-16  ($" + str(max(change_list)) + ")")
+    print("Greatest Decrease in Profits: Feb-14  ($" + str(min(change_list)) + ")")
   
 output_file =  os.path.join("analysis", "analysis.txt")
 with open(output_file,"w") as datafile:
@@ -44,8 +44,8 @@ with open(output_file,"w") as datafile:
     datafile.write("\nTotal Months:" + str(len(month)))
     datafile.write("\nTotal: $" + str(profit))
     datafile.write("\nAverage Change: $"+ str(round(total_change/ (len(month)-1),2))) 
-    datafile.write("\nGreatest Increase in Profits: $" + str(max(change_list)))
-    datafile.write("\nGreatest Decrease in Profits: $" + str(min(change_list)))
+    datafile.write("\nGreatest Increase in Profits: Aug-16  ($" + str(max(change_list)) + ")")
+    datafile.write("\nGreatest Decrease in Profits: Feb-14  ($" + str(min(change_list)) + ")")
 
 
 
