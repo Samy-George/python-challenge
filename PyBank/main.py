@@ -4,7 +4,7 @@ import os
 
 # Set path for file
 csvpath= os.path.join("resources", "budget_data.csv")
-# Lists to store data
+# Lists to store variables data
 month = []
 profit_list = []
 change = 0
@@ -18,25 +18,35 @@ with open(csvpath) as csvfile:
     # Read the header row first
     csv_header = next(csvreader)
     first_row = next(csvreader)
+    # add the first row of month list
     month.append(first_row[0])
+    # add the first row of profit list
     profit_list.append(first_row[1])
+    # identify the first row
     previous = int(first_row[1])
     profit = profit + previous 
+    # loop throw the file
     for row in csvreader:
+        # make the rest of the profit list
         profit_list.append(row[1])
+        # make the rest of the month list
         month.append(row[0])
+        # calculate profit
         profit = profit +int(row[1])
+        # calculate change
         change = int(row[1]) - previous
+        # calculate total change
         total_change = total_change + change
         previous = int(row[1])
+        # create change list
         change_list = [int(profit_list[i+1])-int(profit_list[i]) for i in range(len(profit_list)-1)]
-   
+   # printing 
     print("Total Months:" + str(len(month)))
     print("Total: $" + str(profit))   
     print("Average Change: $"+ str(round(total_change/ (len(month)-1),2)))       
     print("Greatest Increase in Profits: Aug-16  ($" + str(max(change_list)) + ")")
     print("Greatest Decrease in Profits: Feb-14  ($" + str(min(change_list)) + ")")
-  
+  # creat tex file 
 output_file =  os.path.join("analysis", "analysis.txt")
 with open(output_file,"w") as datafile:
     datafile.write("Financial Analysis")
